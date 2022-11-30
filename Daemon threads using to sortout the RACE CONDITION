@@ -1,0 +1,101 @@
+//By using the Deamon thread and set Priority and infinity loop(;;) we sortout the Race Condition
+class  MsWord extends Thread
+{
+	public void run()
+	{
+		Thread t=Thread.currentThread();
+		String name=t.getName();
+		if(name.equals("TYPE"))
+		{
+			typing();
+		}
+		else if(name.equals("SPELL"))
+		{
+			spellChecking();
+		}
+		else
+		{
+			autoSaving();
+		}
+	}
+	public void typing()
+	{
+		try
+		{
+			System.out.println("TYPING ACTIVITY STARTED");
+			for(int i=1;i<=5;++i)
+			{
+				System.out.println("Typing...");
+				Thread.sleep(5000);
+			}
+			System.out.println("TYPING ACTIVITY COMPLETED");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Typing Interrupted");
+		}
+	}
+	public void spellChecking()
+	{
+		try
+		{
+			System.out.println("SPELLCHECKING ACTIVITY STARTED");
+			for(;;)
+			{
+				System.out.println("spellChecking....");
+				Thread.sleep(5000);
+				System.out.println("completed");
+
+			}
+	
+		}
+		catch (Exception e)
+		{
+			System.out.println("spellchecking Interrupted");
+		}
+	}
+	public void autoSaving()
+	{
+		try
+		{
+			System.out.println("AUTOSAVING ACTIVITY STARTED");
+			for(;;)
+			{
+				System.out.println("autoSaving....");
+				Thread.sleep(3900);
+			}
+		
+		}
+		catch (Exception e)
+		{
+			System.out.println("Autosaving Interrupted");
+		}
+	}
+
+}
+
+class Launch
+{
+	public static void main(String[]args) 
+	{
+		MsWord w1=new MsWord();
+		MsWord w2=new MsWord();
+		MsWord w3=new MsWord();
+
+		 w1.setName("TYPE");
+		 w2.setName("SPELL");
+		 w3.setName("SAVE");
+
+
+		 w2.setDaemon(true);
+		 w3.setDaemon(true);	
+
+		 w2.setPriority(3);
+		 w3.setPriority(4);
+
+
+		 w1.start();
+		 w2.start();
+		 w3.start();
+	}
+}
