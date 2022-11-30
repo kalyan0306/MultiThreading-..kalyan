@@ -1,0 +1,99 @@
+import java.util.Scanner;
+class Demo extends Thread
+{
+	public void run()
+	{
+		Thread t=Thread.currentThread();
+		String  name=t.getName();
+		if(name.equals("BANK"))
+		{
+			banking();
+		}
+		else if(name.equals("ADD"))
+		{
+			adding();
+		}
+		else
+		{
+			printing();
+		}
+	}
+	public void banking()
+	{
+		try
+		{
+			System.out.println("Banking activity started");
+			Scanner scan=new Scanner(System.in);
+			System.out.println("enter the Account number:");
+			int acc=scan.nextInt();
+			System.out.println("enter the Password:");
+			int pwd=scan.nextInt();
+			Thread.sleep(3000);
+			System.out.println("banking ACTIVITY completed");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Banking activity Interrupted");
+		}
+	}
+	public void adding()
+	{
+		try
+		{
+			System.out.println("Addition activity started");
+			int num1=12345;
+			int num2=123456;
+			Thread.sleep(3000);
+			int res=num1+num2;
+			System.out.println("sum of numbers:"+res);
+			System.out.println("Addition activity is completed");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Addition activity Intrrupted");
+		}
+	}
+	public void printing()
+	{
+		try
+		{
+			System.out.println("Printing activity started");
+			for(int i=65;  i<=69;i++){
+				System.out.println((char)i);
+				Thread.sleep(3000);
+			}
+			System.out.println("Printing activity completed");
+		
+		}
+		catch (Exception e)
+		{
+			System.out.println("Printing activity Interrupted");
+		}
+	}
+}
+	class Launch
+	{
+		public static void main(String[]args)
+		{
+			Demo d1=new Demo();
+			Demo d2=new Demo();
+			Demo d3=new Demo();
+				
+			System.out.println(d1.getName());
+			System.out.println(d2.getName());
+			System.out.println(d3.getName());
+
+			d1.setName("BANK");
+			d2.setName("ADD");
+			d3.setName("PRINT");
+
+			System.out.println(d1.getName());
+			System.out.println(d2.getName());
+			System.out.println(d3.getName());
+
+			d1.start();
+			d2.start();
+			d3.start();
+		}
+	}
+
