@@ -1,0 +1,73 @@
+import java.util.Scanner;
+class Demo1 extends Thread
+{
+	public void run(){
+		try
+		{
+			System.out.println("BANKING ACTIVITY STARTED");
+			Scanner scan=new Scanner(System.in);
+			System.out.println("enter the Account number:");
+			int acc=scan.nextInt();
+			System.out.println("enter the password:");
+			int pwd=scan.nextInt();
+			Thread.sleep(2000);
+			System.out.println("BANKING ACTIVITY IS COMPLETED");
+		}
+		catch (Exception e)
+		{
+			System.out.println("BANKING ACTIVITY IS Interrupted");
+		}
+	}
+}
+class Demo2 extends Thread
+{
+	public void run()
+	{
+		try
+		{
+			System.out.println("Addition Activity started");
+			int num1=123456;
+			int num2=123456;
+			Thread.sleep(2000);
+			int res=num1+num2;
+			System.out.println("sum of numbers:"+res);
+			System.out.println("Addition activity completed");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Addition activity is Interrupted");
+		}
+	}
+}
+class Demo3 extends Thread
+{
+	public void run()
+	{
+		try
+		{
+			System.out.println("Printing activity Started");
+			for(int i=65;i<=69;++i)
+			{
+				System.out.println((char)i);
+				
+			Thread.sleep(2000);
+			}
+				System.out.println("Printing activity Completed");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Printing activity Interrupted");
+		}
+	}
+}
+class Launch
+{
+	public static void main(String[]args){
+		Demo1 d1=new Demo1();
+		Demo2 d2=new Demo2();
+		Demo3 d3=new Demo3();
+		d1.start();
+		d2.start();
+		d3.start();
+	}
+}
